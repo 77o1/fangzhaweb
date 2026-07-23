@@ -5,7 +5,7 @@ import sqlite3
 from datetime import datetime
 
 # ==================== 🔑 请替换以下 3 个变量 ====================
-API_KEY = "ark-c3aa8ccb-d6d8-416e-b33a-69e9807c45a2-94e0e"   # 你的 API Key
+API_KEY =st.secrets["API_KEY"]   # 你的 API Key
 API_URL = "https://ark.cn-beijing.volces.com/api/v3/chat/completions"  # 你的 API 地址
 MODEL_ID = "ep-20260720222605-bxxmz"   # ⚠️ 请到火山引擎控制台 → 模型推理 里查看，复制出来填这里
 # =============================================================
@@ -138,7 +138,7 @@ def main():
                 st.session_state["chat_history"].append({"user": user_msg, "ai": ai_reply})
 
         # 显示历史对话
-        for item in st.session_state["chat_history"]:
+        for item in reversed(st.session_state["chat_history"]):
             st.markdown(f"**学生提问：**\n{item['user']}")
             st.markdown(f"**AI反诈判定结果：**\n{item['ai']}")
             st.divider()
